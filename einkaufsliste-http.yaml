@@ -11,10 +11,17 @@ data:
         <script>
           function addItem(){
             const input = document.getElementById("item");
-            const list = document.getElementById("einkaufsListe")
+            const list = document.getElementById("einkaufsListe");
             if (input.value.trim() !== ""){
               const li = document.createElement("li");
               li.textContent = input.value;
+              // Delete-Button
+              const btn = document.createElement("button");
+              btn.textContent = "Delete";
+              btn.onclick = function() {
+                list.removeChild(li);
+              };
+              li.appendChild(btn);
               list.appendChild(li);
               input.value = "";
             }
@@ -23,12 +30,12 @@ data:
       </head>
       <body>
         <h1><u>Einkaufsliste</u></h1>
-        <input id="item" name="listaddField" placeholder="Add Item">
+        <input id="item" name="listaddField" placeholder="Add Item...">
         <button type="button" onClick="addItem()">Add Item</button>
         <ul id="einkaufsListe">
-          <li>Bread</li>
-          <li>Milk</li>
-          <li>Eggs</li>
+          <li>Bread <button onclick="this.parentElement.remove()">Delete</button></li>
+          <li>Milk <button onclick="this.parentElement.remove()">Delete</button></li>
+          <li>Eggs <button onclick="this.parentElement.remove()">Delete</button></li>
         </ul>
       </body>
     </html>
